@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 3613492625
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 15e17d267e6b7e8c521f790c3d25d4e4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 74058c4a226ccf8cf722db555f795f9d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: -1315944802, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/CodeX/AssetBundleRes/UI/MainUI/Prefab/JoystickView.prefab
+Dependencies:
+- G:/Workspace/github/CodeX/CodeX_Client/StreamingAssets/rdata/mainui_asset.unity3d

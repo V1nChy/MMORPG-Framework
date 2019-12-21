@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 4056229760
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: rdata/account.unity3d
+      Dependencies:
+        Dependency_0: rdata/common_asset.unity3d
+    Info_1:
+      Name: rdata/common_asset.unity3d
+      Dependencies: {}
+    Info_2:
+      Name: rdata/mainui.unity3d
+      Dependencies:
+        Dependency_0: rdata/mainui_asset.unity3d
+    Info_3:
+      Name: rdata/mainui_asset.unity3d
+      Dependencies: {}
+    Info_4:
+      Name: rdata/terrain_scene_1000.unity3d
+      Dependencies: {}

@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 1999469079
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 42966e1ff40be08bfc08276747b9972c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/CodeX/AssetBundleRes/UI/MainUI/Texture/zjmui_yg_001.png
+- Assets/CodeX/AssetBundleRes/UI/MainUI/Texture/zjmui_yg_003.png
+- Assets/CodeX/AssetBundleRes/UI/MainUI/Texture/zjmui_sq_005.png
+- Assets/CodeX/AssetBundleRes/UI/MainUI/Texture/zjmui_ts_003.png
+- Assets/CodeX/AssetBundleRes/UI/MainUI/Texture/zjmui_yg_002.png
+Dependencies: []

@@ -1,0 +1,71 @@
+ManifestFileVersion: 0
+CRC: 2013635767
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 66edbf4a96810958cdbba198c8e6300a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/window.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/menu_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/play_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/progrees_tile.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/textfield.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/arrow_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/replay_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/toggle.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/sound_on_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/sound_on.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/window1.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/button_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/sound_on_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/info.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/pause_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/replay_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/slider_thumb.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/popup_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/info_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/popup.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/pause.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/button.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/button_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/dropdown.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/arrow.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/play_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/lock.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/play.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/checkbox.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/pause_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/slider_background.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/slider_vert.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/sound_off_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/arrow_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/check.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/restart.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/options.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/textfield_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/slider.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/slider_filler.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/info_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/toggle2.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/ckeckbox_2.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/sound_off.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/textfiels_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/header.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/menu_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/menu.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/options_hover.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/slider_filler1.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/slider_thumb1.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/toggle_1.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/options_active.png
+- Assets/CodeX/AssetBundleRes/UI/Common/Textrue/sound_off_active.png
+Dependencies: []
