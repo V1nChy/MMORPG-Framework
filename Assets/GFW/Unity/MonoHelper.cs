@@ -61,10 +61,10 @@ namespace GFW
 
         //===========================================================
 
-        public static void StartCoroutine(IEnumerator routine)
+        public static Coroutine StartCoroutine(IEnumerator routine)
         {
             MonoBehaviour mono = Instance;
-            mono.StartCoroutine(routine);
+            return mono.StartCoroutine(routine);
         }
     }
 }

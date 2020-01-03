@@ -18,7 +18,7 @@ namespace GFW
                     root = GameObject.Find(NAME);
                     if (root == null)
                     {
-                        Debugger.LogError("UIRoot GameObject Is Not Exist!");
+                        LogManager.LogError("UIRoot GameObject Is Not Exist!");
                     }
                     if (root.GetComponent<UIRoot>() == null)
                     {
@@ -39,7 +39,7 @@ namespace GFW
             {
                 return obj.GetComponent<T>();
             }
-            Debugger.LogWarning("Component:{0} Not Exist！", typeof(T).Name);
+            LogManager.LogWarning("Component:{0} Not Exist！", typeof(T).Name);
             return null;
         }
 
@@ -62,7 +62,7 @@ namespace GFW
             {
                 return obj.gameObject;
             }
-            Debugger.LogWarning("UIRoot@Find() ,UI:{0} Not Exist！", name);
+            LogManager.LogWarning("UIRoot@Find() ,UI:{0} Not Exist！", name);
             return null;
         }
 
@@ -93,7 +93,7 @@ namespace GFW
                 }
                 else
                 {
-                    Debugger.LogError("UIRoot@GetLayer, {0} Is Not Exist!", layerName);
+                    LogManager.LogError("UIRoot@GetLayer, {0} Is Not Exist!", layerName);
                 }
             }
             else

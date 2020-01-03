@@ -35,6 +35,7 @@ using LuaInterface;
 
 using Object = UnityEngine.Object;
 using Debug = UnityEngine.Debug;
+using Debugger = LuaInterface.Debugger;
 using System.Threading;
 
 [InitializeOnLoad]

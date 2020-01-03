@@ -24,5 +24,10 @@ namespace CodeX
 
             GameSystem.Instance.GetManager<LuaManager>().InitStart(); 
         }
+
+        private void SendMessageCommand()
+        {
+
+        }
     }
 }

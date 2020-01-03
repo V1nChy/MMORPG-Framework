@@ -41,7 +41,21 @@ namespace CodeX
         public const string LuaAssetsDir = "ldata/";
         public const string MapAssetsDir = "mdata/";
         public const string NormalAssetsDir = "rdata/";
-        public const string StreamingAssets = "StreamingAssets";    //打包出来的资源目录 
+        public const string StreamingAssets = "StreamingAssets";    //打包出来的资源目录
+
+        public static int UpdateFileTimeout = 5;
+        public static string CdnUrl = "";
+        public static bool IgnoreGameUpdateState = false;
+        public static bool OpenNoneImportResVersionSave = false;
+        public static bool LoadResWaitNextFrame = false;
+        public static bool SilentAssetsUpdate = false;
+        public static bool IgnoreUpdateState = false;
+        public static bool LowSystemMode = false;
+        public static bool OpenDownloadLog = false;
+        public static bool UseUpdatOriModeReal = false;
+        public static bool UseUpdatOriThreadMode = false;
+        public static bool UseUpdateNewMode = false;
+        public static bool UseDeleteRequestMode = false;
 
         public static string FrameworkRoot {
             get {

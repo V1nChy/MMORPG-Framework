@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<PackFile>
+    <PackInfoList>
+        <PackInfo pack_name="assets" version="162" md5="1C5C5C423C600752D076E9630F848DD9" />
+        <PackInfo pack_name="luaconfig" version="306" md5="DB930448FCFEE760AFB8BCCB0CC0D7AB" />
+        <PackInfo pack_name="unitybundle" version="38" md5="53CF72F0C59B347D657AE54415E66520" />
+        <PackInfo pack_name="unityres" version="262" md5="0FEAB171A4BD474A38214A8BFE441BA0" />
+    </PackInfoList>
+    <FileInfoList />
+</PackFile>
