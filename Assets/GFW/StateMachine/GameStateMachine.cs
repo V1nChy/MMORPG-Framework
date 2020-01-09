@@ -128,7 +128,7 @@ namespace GFW
         public GameState CreateNormalState(uint state_id, ushort sink_id)
         {
             string state_name = GetDefaultStateNameFromId(state_id);
-            return this.CreateStateImpl(state_id, state_name, sink_id, StateComposeType.SCT_NORMAL, 65535u);
+            return this.CreateStateImpl(state_id, state_name, sink_id, StateComposeType.SCT_NORMAL, ushort.MaxValue);
         }
         public GameState CreateNormalState(string state_name, string sink_name)
         {
@@ -145,7 +145,7 @@ namespace GFW
         }
         private GameState CreateStateImpl(uint state_id, string state_name, ushort sink_id, StateComposeType com_type)
         {
-            return this.CreateStateImpl(state_id, state_name, sink_id, com_type, 65535u);
+            return this.CreateStateImpl(state_id, state_name, sink_id, com_type, ushort.MaxValue);
         }
         private GameState CreateStateImpl(uint state_id, string state_name, ushort sink_id, StateComposeType com_type, uint parent_id)
         {
@@ -209,17 +209,14 @@ namespace GFW
                     if (state.GetComposeType() == StateComposeType.SCT_SUB)
 					{
 						GameState parent_state = this.FindState(state.m_parent_state_id);
-						bool flag6 = this.IsInState(parent_state.GetId());
-						if (flag6)
+						if (this.IsInState(parent_state.GetId()))
 						{
 							GameState cur_run_state = this.FindState(parent_state.m_cur_run_sub);
-							bool flag7 = state.CanChangeFromState(parent_state.m_cur_run_sub);
-							if (flag7)
+							if (state.CanChangeFromState(parent_state.m_cur_run_sub))
 							{
 								parent_state.m_previous_sub = parent_state.m_cur_run_sub;
 								parent_state.m_cur_run_sub = state_id;
-								bool flag8 = cur_run_state != null;
-								if (flag8)
+								if (cur_run_state != null)
 								{
 									cur_run_state.Exit();
 								}
@@ -229,20 +226,17 @@ namespace GFW
 						}
 						else
 						{
-							bool flag9 = parent_state.CanChangeFromState(sink.cur_state_id);
-							if (flag9)
+							if (parent_state.CanChangeFromState(sink.cur_state_id))
 							{
 								parent_state.m_previous_sub = parent_state.m_cur_run_sub;
 								parent_state.m_cur_run_sub = state_id;
 								sink.previous_state_id = sink.cur_state_id;
 								sink.cur_state_id = parent_state.GetId();
-								bool flag10 = cur_sink_state != null;
-								if (flag10)
+								if (cur_sink_state != null)
 								{
 									cur_sink_state.Exit();
 								}
-								bool flag11 = parent_state != null;
-								if (flag11)
+								if (parent_state != null)
 								{
 									parent_state.Enter();
 								}
@@ -304,8 +298,7 @@ namespace GFW
                         if (this.IsInState(parent_state.GetId()))
 						{
 							GameState cur_run_state = this.FindState(parent_state.m_cur_run_sub);
-							bool flag6 = cur_run_state != null;
-							if (flag6)
+							if (cur_run_state != null)
 							{
 								cur_run_state.Exit();
 							}
@@ -359,38 +352,31 @@ namespace GFW
 		public bool ChangeStateTest(uint state_id, bool ignore_state_lock)
 		{
 			GameState state = this.FindState(state_id);
-			bool flag = state != null;
-			if (flag)
+			if (state != null)
 			{
-				bool flag2 = this.IsInState(state_id);
-				if (flag2)
+				if (this.IsInState(state_id))
 				{
 					return state.IsStateReEnter();
 				}
 				GameStateMachine.GameStateSink sink = this.FindSink(state.GetSinkId());
 				GameState cur_sink_state = this.FindState(sink.cur_state_id);
-				bool flag3 = cur_sink_state != null && cur_sink_state.IsStateLock() && !ignore_state_lock;
-				if (flag3)
+				if (cur_sink_state != null && cur_sink_state.IsStateLock() && !ignore_state_lock)
 				{
 					return false;
 				}
-				bool flag4 = state.GetComposeType() == StateComposeType.SCT_SUB;
-				if (flag4)
+				if (state.GetComposeType() == StateComposeType.SCT_SUB)
 				{
 					GameState parent_state = this.FindState(state.m_parent_state_id);
-					bool flag5 = this.IsInState(parent_state.GetId());
-					if (flag5)
+					if (this.IsInState(parent_state.GetId()))
 					{
-						bool flag6 = state.CanChangeFromState(parent_state.m_cur_run_sub);
-						if (flag6)
+						if (state.CanChangeFromState(parent_state.m_cur_run_sub))
 						{
 							return true;
 						}
 					}
 					else
 					{
-						bool flag7 = parent_state.CanChangeFromState(sink.cur_state_id);
-						if (flag7)
+						if (parent_state.CanChangeFromState(sink.cur_state_id))
 						{
 							return true;
 						}
@@ -398,8 +384,7 @@ namespace GFW
 				}
 				else
 				{
-					bool flag8 = state.CanChangeFromState(sink.cur_state_id);
-					if (flag8)
+					if (state.CanChangeFromState(sink.cur_state_id))
 					{
 						return true;
 					}
@@ -473,10 +458,9 @@ namespace GFW
 
 		public uint GetSinkRunState(ushort sink_id)
 		{
-			uint find_id = 65535u;
+			uint find_id = ushort.MaxValue;
 			GameStateMachine.GameStateSink sink = this.FindSink(sink_id);
-			bool flag = sink != null;
-			if (flag)
+			if (sink != null)
 			{
 				find_id = sink.cur_state_id;
 			}
@@ -496,17 +480,15 @@ namespace GFW
 		public void SinkToNullState(ushort sink_id)
 		{
 			GameStateMachine.GameStateSink sink = this.FindSink(sink_id);
-			bool flag = sink != null;
-			if (flag)
+			if (sink != null)
 			{
 				sink.previous_state_id = sink.cur_state_id;
 				GameState state = this.FindState(sink.cur_state_id);
-				bool flag2 = state != null;
-				if (flag2)
+				if (state != null)
 				{
 					state.Exit();
 				}
-				sink.cur_state_id = 65535u;
+				sink.cur_state_id = ushort.MaxValue;
 			}
 		}
 
@@ -518,7 +500,7 @@ namespace GFW
 		public GameState CreateComposeState(uint state_id, ushort sink_id)
 		{
 			string state_name = this.GetDefaultStateNameFromId(state_id);
-			return this.CreateStateImpl(state_id, state_name, sink_id, StateComposeType.SCT_COMPOSE, 65535u);
+			return this.CreateStateImpl(state_id, state_name, sink_id, StateComposeType.SCT_COMPOSE, ushort.MaxValue);
 		}
         public GameState CreateComposeState(string state_name, string sink_name)
         {
@@ -529,7 +511,7 @@ namespace GFW
                 if (m_free_state_id_list.Count > 0)
                 {
                     uint id = m_free_state_id_list[0];
-                    result = CreateStateImpl(id, state_name, sink.id, StateComposeType.SCT_COMPOSE, 65535u);
+                    result = CreateStateImpl(id, state_name, sink.id, StateComposeType.SCT_COMPOSE, ushort.MaxValue);
                 }
             }
             return result;
@@ -543,24 +525,21 @@ namespace GFW
 		public GameState CreateSubState(string state_name, string sink_name, string parent_name)
 		{
 			GameStateMachine.GameStateSink sink = this.FindSink(sink_name);
-			bool flag = sink == null;
 			GameState result;
-			if (flag)
+			if (sink == null)
 			{
 				result = null;
 			}
 			else
 			{
 				GameState parent_state = this.FindState(parent_name);
-				bool flag2 = parent_state == null;
-				if (flag2)
+				if (parent_state == null)
 				{
 					result = null;
 				}
 				else
 				{
-					bool flag3 = this.m_free_state_id_list.Count != 0;
-					if (flag3)
+					if (this.m_free_state_id_list.Count != 0)
 					{
 						uint id = this.m_free_state_id_list[0];
 						result = this.CreateStateImpl(id, state_name, sink.id, StateComposeType.SCT_SUB, parent_state.GetId());
@@ -577,42 +556,36 @@ namespace GFW
 		public void DestroyState(uint state_id)
 		{
 			GameState state = this.FindState(state_id);
-			bool flag = state != null;
-			if (flag)
+			if (state != null)
 			{
 				GameStateMachine.GameStateSink sink = this.FindSink(state.GetSinkId());
 				uint cur_run_state_id = sink.cur_state_id;
 				sink.contain_state_id_list.Remove(state_id);
 				bool need_cancel_cur_state = false;
-				bool flag2 = this.IsInState(state_id);
-				if (flag2)
+				if (this.IsInState(state_id))
 				{
 					state.Exit();
 					need_cancel_cur_state = true;
 				}
-				bool flag3 = state.GetComposeType() == StateComposeType.SCT_SUB;
-				if (flag3)
+				if (state.GetComposeType() == StateComposeType.SCT_SUB)
 				{
 					GameState parent_state = this.FindState(state.m_parent_state_id);
-					bool flag4 = need_cancel_cur_state;
-					if (flag4)
+					if (need_cancel_cur_state)
 					{
-						parent_state.m_cur_run_sub = 65535u;
-						parent_state.m_previous_sub = 65535u;
+						parent_state.m_cur_run_sub = ushort.MaxValue;
+						parent_state.m_previous_sub = ushort.MaxValue;
 					}
 					parent_state.m_sub_state_id_list.Remove(state_id);
 				}
 				else
 				{
 					sink.contain_state_id_list.Remove(state_id);
-					bool flag5 = need_cancel_cur_state;
-					if (flag5)
+					if (need_cancel_cur_state)
 					{
-						sink.cur_state_id = 65535u;
-						sink.previous_state_id = 65535u;
+						sink.cur_state_id = ushort.MaxValue;
+						sink.previous_state_id = ushort.MaxValue;
 					}
-					bool flag6 = state.GetComposeType() == StateComposeType.SCT_COMPOSE;
-					if (flag6)
+					if (state.GetComposeType() == StateComposeType.SCT_COMPOSE)
 					{
 						state.DestroyAllSubStates();
 					}
@@ -642,7 +615,7 @@ namespace GFW
 		public uint GetStateIdFromName(string name)
 		{
 			GameState state = FindState(name);
-            uint result = 65535u;
+            uint result = ushort.MaxValue;
             if (state != null)
 			{
 				result = state.GetId();
@@ -654,8 +627,7 @@ namespace GFW
 		{
 			string tmp_name = "";
 			GameStateMachine.GameStateSink sink = this.FindSink(sink_id);
-			bool flag = sink != null;
-			if (flag)
+			if (sink != null)
 			{
 				tmp_name = sink.sink_name;
 			}
@@ -675,8 +647,7 @@ namespace GFW
 
 		public void SetListener(LuaFunction enter_func, LuaFunction exit_func)
 		{
-			bool flag = this.mAllStateListener != null;
-			if (flag)
+			if (this.mAllStateListener != null)
 			{
 				this.mAllStateListener.Free();
 				this.mAllStateListener = null;
@@ -686,8 +657,7 @@ namespace GFW
 
 		public void OnStateEnterNotify(GameState pCurState)
 		{
-			bool flag = this.mAllStateListener == null;
-			if (!flag)
+			if (this.mAllStateListener != null)
 			{
 				this.mAllStateListener.OnStateEnter(pCurState);
 			}
@@ -695,7 +665,6 @@ namespace GFW
 
 		public void OnStateLeaveNotify(GameState pCurState)
 		{
-			bool flag = this.mAllStateListener == null;
             if (this.mAllStateListener != null)
 			{
 				this.mAllStateListener.OnStateQuit(pCurState);

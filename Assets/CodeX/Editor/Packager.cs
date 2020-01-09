@@ -432,7 +432,7 @@ public class Packager {
             string ext = Path.GetExtension(file);
             if (file.EndsWith(".meta") || file.Contains(".DS_Store")) continue;
 
-            string md5 = AppUtil.md5file(file);
+            string md5 = Util.md5file(file);
             string value = file.Replace(resPath, string.Empty);
             sw.WriteLine(value + "|" + md5);
         }
@@ -497,7 +497,7 @@ public class Packager {
         info.WindowStyle = ProcessWindowStyle.Hidden;
         info.UseShellExecute = isWin;
         info.ErrorDialog = true;
-        AppUtil.Log(info.FileName + " " + info.Arguments);
+        Util.Log(info.FileName + " " + info.Arguments);
 
         Process pro = Process.Start(info);
         pro.WaitForExit();
@@ -528,7 +528,7 @@ public class Packager {
             info.UseShellExecute = true;
             info.WorkingDirectory = dir;
             info.ErrorDialog = true;
-            AppUtil.Log(info.FileName + " " + info.Arguments);
+            Util.Log(info.FileName + " " + info.Arguments);
 
             Process pro = Process.Start(info);
             pro.WaitForExit();

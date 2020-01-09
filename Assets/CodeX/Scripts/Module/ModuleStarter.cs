@@ -17,8 +17,8 @@ public class ModuleStarter : Singleton<ModuleStarter>
     private void InitServices()
     {
         ModuleManager.Instance.Init("CodeX");
-        UIManager.Instance.Init("UI/Prefab/");
         GameSystem.Instance.Init("CodeX");
+        UIManager.Instance.Init("UI/Prefab/");
     }
     private void InitBusiness()
     {
@@ -26,9 +26,15 @@ public class ModuleStarter : Singleton<ModuleStarter>
         ModuleManager.Instance.CreateModule(ModuleDef.LuaGameModule);
     }
 
-    public void Dispose()
+    public void ReleaseAll()
     {
         ModuleManager.Instance.ReleaseAll();
+        GameSystem.Instance.ReleaseAll();
+    }
+
+    public void Dispose()
+    {
+        
     }
 }
 

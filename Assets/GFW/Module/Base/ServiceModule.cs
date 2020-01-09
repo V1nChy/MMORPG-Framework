@@ -18,5 +18,15 @@ namespace GFW
                 return ms_instance;
             }
         }
+
+        public ServiceModule()
+        {
+            Initialize();
+        }
+
+        protected virtual void Initialize()
+        {
+
+        }
     }
 }

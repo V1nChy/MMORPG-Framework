@@ -10,7 +10,15 @@ public class AppMain : MonoBehaviour {
     void Start () {
         AppConst.DebugMode = DebugMode;
         if (AppConst.DebugMode)
+        {
             AppConst.LuaBundleMode = false;
+            AppConst.UpdateMode = false;
+        }
+        else
+        {
+            AppConst.LuaBundleMode = true;
+            AppConst.UpdateMode = true;
+        }
 
         if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
         {
@@ -21,7 +29,17 @@ public class AppMain : MonoBehaviour {
         ModuleStarter.Instance.StartUp();
     }
 
-    void OnApplicationQuit()
+    private void Update()
+    {
+        
+    }
+
+    private void OnDestroy()
+    {
+        ModuleStarter.Instance.ReleaseAll();
+    }
+
+    private void OnApplicationQuit()
     {
         ModuleStarter.Instance.Dispose();
     }

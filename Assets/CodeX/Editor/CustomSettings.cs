@@ -178,7 +178,7 @@ public static class CustomSettings
         _GT(typeof(UIAgentManager)),
         _GT(typeof(SoundManager)),
         _GT(typeof(TimerManager)),
-        _GT(typeof(ThreadManager)),
+        //_GT(typeof(ThreadManager)),
         _GT(typeof(NetworkManager)),
         _GT(typeof(ResourceManager)),
 

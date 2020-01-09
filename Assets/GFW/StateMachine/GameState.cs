@@ -212,12 +212,10 @@ namespace GFW
 		public uint GetActionFlag()
 		{
 			uint tmp_act_flag = this.m_action_flag;
-			bool flag = this.m_compose_type == StateComposeType.SCT_COMPOSE;
-			if (flag)
+			if (this.m_compose_type == StateComposeType.SCT_COMPOSE)
 			{
 				GameState cur_sub_state = this.m_parent_machine.FindState(this.m_cur_run_sub);
-				bool flag2 = cur_sub_state != null;
-				if (flag2)
+				if (cur_sub_state != null)
 				{
 					tmp_act_flag = cur_sub_state.GetActionFlag();
 				}
@@ -241,13 +239,11 @@ namespace GFW
 		}
 		public bool IsStateLock()
 		{
-			bool flag = this.m_compose_type == StateComposeType.SCT_COMPOSE;
 			bool result;
-			if (flag)
+			if (this.m_compose_type == StateComposeType.SCT_COMPOSE)
 			{
 				GameState cur_sub_state = this.m_parent_machine.FindState(this.m_cur_run_sub);
-				bool flag2 = cur_sub_state != null;
-				result = (flag2 && cur_sub_state.IsStateLock());
+				result = (cur_sub_state != null && cur_sub_state.IsStateLock());
 			}
 			else
 			{
@@ -277,8 +273,7 @@ namespace GFW
 		}
 		public void DestroyAllSubStates()
 		{
-			bool flag = this.m_compose_type == StateComposeType.SCT_COMPOSE;
-			if (flag)
+			if (this.m_compose_type == StateComposeType.SCT_COMPOSE)
 			{
 				foreach (uint item in this.m_sub_state_id_list)
 				{
