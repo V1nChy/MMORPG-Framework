@@ -991,6 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
+  EnableLog: 1
 --- !u!82 &1594091352
 AudioSource:
   m_ObjectHideFlags: 0

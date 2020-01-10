@@ -110,7 +110,7 @@ namespace CodeX
 
                 if (Application.platform == RuntimePlatform.Android && Input.GetKeyDown(KeyCode.Escape))
                 {
-                    ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "SHOW_MESSAGE", GameConfig.Instance["Exitgame"]);
+                    BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "SHOW_MESSAGE", GameConfig.Instance["Exitgame"]);
                 }
             }
         }

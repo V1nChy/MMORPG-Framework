@@ -13,7 +13,7 @@ namespace CodeX
             Debug.Log("CheckAppUpdateStateListner@OnStateEnter()");
             if (Application.platform == RuntimePlatform.Android && GameConfig.Instance.IsAppChange())
 			{
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand","UPDATE_APP_MESSAGE", GameConfig.Instance["UpdateApp"]);
+                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand","UPDATE_APP_MESSAGE", GameConfig.Instance["UpdateApp"]);
 			}
 			else
 			{

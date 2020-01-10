@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace GFW.ManagerSystem
+namespace GFW
 {
     public interface ICommand
     {
         void Execute(IMessage message);
     }
 }
-

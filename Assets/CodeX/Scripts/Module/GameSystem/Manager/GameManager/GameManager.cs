@@ -27,7 +27,7 @@ namespace CodeX
 
         private void Start()
         {
-            ModuleManager.Instance.StartModule(ModuleDef.LuaGameModule);
+            BusinessManager.Instance.StartModule(ModuleDef.LuaGameModule);
         }
     }
 }

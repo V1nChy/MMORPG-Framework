@@ -9,7 +9,7 @@ namespace CodeX
 		public override void OnStateEnter(GameState pCurState)
 		{
 			Debug.Log("enter UpdateResStateListner");
-            ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["UpdateDetection"]);
+            BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["UpdateDetection"]);
 			MonoHelper.StartCoroutine(ResUpdateManager.Instance.CheckVersionFile());
 		}
 
@@ -25,16 +25,16 @@ namespace CodeX
 				string download_speed_info = ResUpdateManager.Instance.GetCurDownloadSpeedInfo();
 				string show_message = string.Concat(new object[]{hight_res,",",cur_download_size,",",download_speed_info,",",process," %"});
 
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", show_message);
+                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", show_message);
                 if (process <= 100f)
 				{
-                    ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateProgress", process);
+                    BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateProgress", process);
 				}
 			}
             if (ResUpdateManager.Instance.IsFinish)
 			{
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["UpdateSuccess"]);
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateProgress", 100);
+                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["UpdateSuccess"]);
+                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateProgress", 100);
                 CheckUpdateService.Instance.ToPreResState();
 			}
 		}

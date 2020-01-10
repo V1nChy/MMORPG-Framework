@@ -8,10 +8,14 @@ namespace CodeX
 {
     public class LaunchModule : BusinessModule
     {
+        public const string EVENT_CHANGE_VIEW = "EVENT_CHANGE_VIEW";
+
+        AsyncOperation m_Async;
+
         protected override void Start(object arg)
         {
             UIViewHelper.ShowProgressView(null, OnFinish);
-            UIManager.Instance.Open<UILaunchView>();
+            UIManager.Instance.Open<UILaunchView>(this);
 
             CheckUpdateService.Instance.StartUp();
         }
@@ -24,9 +28,9 @@ namespace CodeX
             //GameSystem.Instance.GetManager<LuaManager>().InitStart(); 
         }
 
-        private void SendMessageCommand()
+        protected override void OnMessage(IMessage msg)
         {
-
+            Event(EVENT_CHANGE_VIEW).Invoke(msg);
         }
     }
 }

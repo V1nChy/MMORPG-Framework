@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GFW.ManagerSystem
+namespace GFW
 {
     public class Controller : IController
     {

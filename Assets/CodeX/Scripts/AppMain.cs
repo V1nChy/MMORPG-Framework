@@ -5,6 +5,7 @@ using CodeX;
 public class AppMain : MonoBehaviour {
 
     public bool DebugMode = true;
+    public bool EnableLog = true;
 
     // Use this for initialization
     void Start () {
@@ -22,7 +23,7 @@ public class AppMain : MonoBehaviour {
 
         if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
         {
-            LogMgr.EnableLog = true;
+            LogMgr.EnableLog = EnableLog;
             gameObject.AddComponent<LogViewer>();
         }
 

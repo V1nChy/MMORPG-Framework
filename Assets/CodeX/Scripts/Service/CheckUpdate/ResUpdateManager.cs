@@ -291,7 +291,7 @@ namespace CodeX
                 }
                 #endregion
                 yield return new WaitForEndOfFrame();
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateProgress", (double)(index + 1) * 100.0 / (double)this.m_pack_name.Count);
+                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateProgress", (double)(index + 1) * 100.0 / (double)this.m_pack_name.Count);
                 num = index + 1;
             }
             www = null;
@@ -522,7 +522,7 @@ namespace CodeX
                             {
                                 this.m_stop_update_state = true;
                                 string md5_error = GameConfig.Instance.GetValue("UpdateFileMd5ErrorMsg");
-                                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UPDATE_RES_MD5_ERROR", md5_error);
+                                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UPDATE_RES_MD5_ERROR", md5_error);
                             }
                             else
                             {

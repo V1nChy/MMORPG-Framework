@@ -11,17 +11,17 @@ namespace CodeX
 	{
 		public override void OnStateEnter(GameState pCurState)
 		{
-            Debug.Log("InitStateListner@OnStateEnter() 加载本地配置");
             if (AppConst.UpdateMode)
 			{
                 GameConfig.Instance.LoadConfig();
             }
 			else
 			{
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UPDATE_PROGRESS", 100);
+                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "Command", "UPDATE_PROGRESS", 100);
                 CheckUpdateService.Instance.ToLoadBgState();
 			}
-		}
+            BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "Command", "UPDATE_PROGRESS", 100);
+        }
 
 		public override void OnStateUpdate(GameState pCurState, float elapseTime)
 		{
@@ -30,16 +30,6 @@ namespace CodeX
                 //ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "SHOW_WINDOW_TEXT");
                 //CheckUpdateService.Instance.ToUpdateConfigState();
 			}
-		}
-
-        public override void OnStateQuit(GameState pCurState)
-        {
-
-        }
-
-		public override void Free()
-		{
-
 		}
 	}
 }

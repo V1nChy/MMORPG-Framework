@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using LuaFramework;
-using GFW.ManagerSystem;
+using GFW;
 
 namespace CodeX
 {

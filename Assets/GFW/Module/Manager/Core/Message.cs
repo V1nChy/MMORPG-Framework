@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GFW.ManagerSystem
+namespace GFW
 {
     public class Message : IMessage
     {

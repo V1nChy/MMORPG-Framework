@@ -11,24 +11,24 @@ public class ModuleStarter : Singleton<ModuleStarter>
         InitServices();
         InitBusiness();
 
-        ModuleManager.Instance.StartModule(ModuleDef.LaunchModule);
+        BusinessManager.Instance.StartModule(ModuleDef.LaunchModule);
     }
 
     private void InitServices()
     {
-        ModuleManager.Instance.Init("CodeX");
+        BusinessManager.Instance.Init("CodeX");
         GameSystem.Instance.Init("CodeX");
         UIManager.Instance.Init("UI/Prefab/");
     }
     private void InitBusiness()
     {
-        ModuleManager.Instance.CreateModule(ModuleDef.LaunchModule);
-        ModuleManager.Instance.CreateModule(ModuleDef.LuaGameModule);
+        BusinessManager.Instance.CreateModule(ModuleDef.LaunchModule);
+        BusinessManager.Instance.CreateModule(ModuleDef.LuaGameModule);
     }
 
     public void ReleaseAll()
     {
-        ModuleManager.Instance.ReleaseAll();
+        BusinessManager.Instance.ReleaseAll();
         GameSystem.Instance.ReleaseAll();
     }
 

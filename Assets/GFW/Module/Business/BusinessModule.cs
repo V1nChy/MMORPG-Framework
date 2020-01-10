@@ -1,13 +1,11 @@
 ﻿using System.Reflection;
+using UnityEngine.Events;
 
 namespace GFW
 {
     public abstract class BusinessModule : Module
     {
         private string m_name = null;
-
-        private EventTable m_tblEvent;
-
         public string Name
         {
             get
@@ -19,10 +17,8 @@ namespace GFW
                 return m_name;
             }
         }
+        private EventTable m_tblEvent;
 
-        public string Title;
-
-        #region - 构造和析构
         internal BusinessModule() { }
 
         /// <summary>
@@ -39,9 +35,7 @@ namespace GFW
                 m_tblEvent = null;
             }
         }
-        #endregion
 
-        #region - 事件表
         protected EventTable GetEventTable()
         {
             if (m_tblEvent == null)
@@ -50,30 +44,17 @@ namespace GFW
             }
             return m_tblEvent;
         }
-
         internal void SetEventTable(EventTable eventTable)
         {
             m_tblEvent = eventTable;
         }
-
         public ModuleEvent Event(string eventName)
         {
             return GetEventTable().GetEvent(eventName);
         }
-        #endregion
 
-        #region - 消息处理
-        /// <summary>
-        /// 当模块收到消息后，通过反射找到处理函数并执行
-        /// </summary>
-        /// <param name="method">处理函数名</param>
-        /// <param name="args">参数数组</param>
-        internal void HandleMessage(string method, object[] args)
+        internal void CallMethod(string method, object[] args)
         {
-            LogMgr.Log("method:{0}, args:{1}", method, args);
-
-            //反射机制
-            //类型定义，方法定义
             //方法名，绑定条件
             MethodInfo mi = this.GetType().GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance);
             if (mi != null)
@@ -82,38 +63,26 @@ namespace GFW
             }
             else
             {
-                OnModuleMessage(method, args);
+                OnMessage(new Message(method, args[0]));
             }
         }
 
-        /// <summary>
-        /// 消息通用处理函数
-        /// 由派生类去实现，用于处理消息
-        /// </summary>
-        protected virtual void OnModuleMessage(string method, object[] args)
+        internal void HandleMessage(string msg, object[] args)
         {
-            LogMgr.Log("general hander： method:{0}, args:{1}", method, args);
+            OnMessage(new Message(msg, args[0]));
         }
-        #endregion
 
-        //========================================================================
+        protected virtual void OnMessage(IMessage msg)
+        {
 
-        /// <summary>
-        /// 调用它以创建模块
-        /// </summary>
-        /// <param name="args"></param>
+        }
+
         public virtual void Create(object arg = null)
         {
-            LogMgr.Log("{0} create: arg = {1}", Name, arg);
         }
 
-        /// <summary>
-        /// 调用它以启动模块
-        /// </summary>
-        /// <param name="arg"></param>
         protected virtual void Start(object arg)
         {
-            LogMgr.Log("业务模块 {0} 显示: arg = {1}", Name, arg);
         }
     }
 }

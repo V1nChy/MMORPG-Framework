@@ -32,7 +32,6 @@ namespace GFW
         /// </summary>
         protected void OnEnable()
         {
-            LogMgr.Log("OnEnable()");
             if (m_btnGoBack != null)
             {
                 m_btnGoBack.onClick.AddListener(OnBtnGoBack);
@@ -54,7 +53,6 @@ namespace GFW
         /// </summary>
         protected void OnDisable()
         {
-            LogMgr.Log("OnDisable()");
 #if UNITY_EDITOR
             if (m_isOpenedOnce)
             {
@@ -76,13 +74,11 @@ namespace GFW
         /// </summary>
         private void OnBtnGoBack()
         {
-            LogMgr.Log("OnBtnGoBack()");
             UIManager.Instance.GoBackPage();
         }
 
         public sealed override void Open(object arg = null)
         {
-            LogMgr.Log("Open()");
             m_openArg = arg;
             m_isOpenedOnce = false;
 
@@ -97,7 +93,6 @@ namespace GFW
 
         public sealed override void Close(object arg = null)
         {
-            LogMgr.Log("Close()");
             if (this.gameObject.activeSelf)
             {
                 this.gameObject.SetActive(false);

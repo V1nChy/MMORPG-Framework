@@ -15,7 +15,7 @@ namespace CodeX
                 ResUpdateManager.Instance.OpenGameVersion();
             }
             //GameSystem.Instance.GetManager<GameManager>().OnInitialize();
-            ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["EnterGame"]);
+            BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["EnterGame"]);
             if (AppConst.UpdateMode)
             {
                 GameConfig.Instance.WriteUpdateState("finish");

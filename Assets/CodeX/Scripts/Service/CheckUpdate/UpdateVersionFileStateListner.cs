@@ -13,12 +13,12 @@ namespace CodeX
 			string ingore_cdn_flag = GameConfig.Instance["IngoreCDNFlag"];
             if (res_update_cdn.Equals("1") && !ingore_cdn_flag.Equals("1"))
 			{
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand","UPDATE_CDN_MSG", GameConfig.Instance["UpdateCDNText"]);
+                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand","UPDATE_CDN_MSG", GameConfig.Instance["UpdateCDNText"]);
 			}
 			else
 			{
 				Debug.Log("UpdateVersionFileStateListner@OnStateEnter()");
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["DetectionVersionFile"]);
+                BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["DetectionVersionFile"]);
 				string mdata_path = AppUtil.DataPath + "mdata/";
                 if (!Directory.Exists(mdata_path))
 				{

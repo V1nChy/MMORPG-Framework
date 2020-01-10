@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeX;
-using GFW.ManagerSystem;
 using GFW;
 using LuaInterface;
 using UnityEngine.UI;
@@ -156,7 +154,7 @@ namespace CodeX
             }
         }
 
-        public static void ShowProgressView(AsyncOperation async, LuaFunction func = null)
+        public static void ShowProgressView(object async, LuaFunction func = null)
         {
             Action callback = () => 
             {

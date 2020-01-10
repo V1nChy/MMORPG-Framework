@@ -16,7 +16,7 @@ namespace CodeX
         {
             LogMgr.Log("ExtractResStateListner@OnStateEnter()");
             string update_mess = GameConfig.Instance.GetValue("GameResExtract");
-            ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["GameResExtract"]);
+            BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["GameResExtract"]);
             this.CheckExtractResource();
         }
 
@@ -103,8 +103,8 @@ namespace CodeX
                         float process = (float)this.m_file_count * 100f / (float)this.m_files.Length;
                         process = (float)Math.Ceiling((double)process);
                         string message = GameConfig.Instance.GetValue("GameResExtract") + process + "%";
-                        ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", message);
-                        ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateProgress", process);
+                        BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", message);
+                        BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateProgress", process);
                         bool flag8 = File.Exists(outfile);
                         if (flag8)
                         {
@@ -169,7 +169,7 @@ namespace CodeX
                         {
                             this.m_finish_state = true;
                             message = GameConfig.Instance.GetValue("ExractResSuc");
-                            ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance.GetValue("ExractResSuc"));
+                            BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance.GetValue("ExractResSuc"));
                         }
                         message = null;
                         dir = null;

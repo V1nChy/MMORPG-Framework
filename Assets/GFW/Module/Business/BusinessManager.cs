@@ -3,48 +3,28 @@ using System.Collections.Generic;
 
 namespace GFW
 {
-    public class ModuleManager : ServiceModule<ModuleManager>
+    public class BusinessManager : ServiceModule<BusinessManager>
     {
         class MessageObject
         {
             public string target;
             public string msg;
             public object[] args;
+            public bool isCall;
         }
 
-        #region - 字段定义
-        /// <summary>
-        /// 业务模块所在的域
-        /// </summary>
         private string m_domain;
-
-        /// <summary>
-        /// 已创建的模块列表
-        /// </summary>
         private Dictionary<string, BusinessModule> m_mapModules;
-
-        /// <summary>
-        /// 当目标模块未创建时，缓存的消息对象
-        /// </summary>
         private Dictionary<string, List<MessageObject>> m_mapCacheMessage;
-
-        /// <summary>
-        /// 当目标模块未创建时，预监听的事件
-        /// </summary>
         private Dictionary<string, EventTable> m_mapPreListenEvents;
-        #endregion
 
-        public ModuleManager()
+        public BusinessManager()
         {
             m_mapModules = new Dictionary<string, BusinessModule>();
             m_mapCacheMessage = new Dictionary<string, List<MessageObject>>();
             m_mapPreListenEvents = new Dictionary<string, EventTable>();
         }
 
-        /// <summary>
-        /// 初始化业务模块所在的域
-        /// </summary>
-        /// <param name="domain">业务模块所在的域</param>
         public void Init(string domain = "")
         {
             m_domain = domain;
@@ -56,15 +36,11 @@ namespace GFW
         /// <param name="name"></param>
         public void StartModule(string name, object arg = null)
         {
-            SendMessage(name, "Start", arg);
+            CallMethod(name, "Start", arg);
         }
 
-        //========================================================================
-
-        #region 创建和销毁业务模块
         /// <summary>
-        /// 通过类型创建一个业务模块
-        /// 业务模块必须已经定义
+        /// 通过类型创建业务模块
         /// </summary>
         public T CreateModule<T>(object args = null) where T : BusinessModule
         {
@@ -72,17 +48,13 @@ namespace GFW
         }
 
         /// <summary>
-        /// 通过类名创建一个业务模块
-        /// 先通过名字反射出Class，如果不存在
+        /// 通过反射创建业务模块
         /// </summary>
-        /// <param name="name">业务模块(类名)的名字</param>
         public BusinessModule CreateModule(string name, object arg = null)
         {
-            LogMgr.Log("Module Name = {0}",name);
-
             if (m_mapModules.ContainsKey(name))
             {
-                LogMgr.LogError("The Module<{0}> Has Existed!", name);
+                LogMgr.LogWarning("The Module<{0}> Has Existed!", name);
                 return null;
             }
 
@@ -117,17 +89,16 @@ namespace GFW
                 List<MessageObject> messageList = m_mapCacheMessage[name];
                 foreach (MessageObject item in messageList)
                 {
-                    module.HandleMessage(item.msg, item.args);
+                    if (item.isCall)
+                        module.CallMethod(item.msg, item.args);
+                    else
+                        module.HandleMessage(item.msg, item.args);
                 }
                 m_mapCacheMessage.Remove(name);
             }
             return module;
         }
 
-        /// <summary>
-        /// 释放一个由ModuleManager创建的模块
-        /// 遵守谁创建谁释放的原则
-        /// </summary>
         public void ReleaseModule(BusinessModule module)
         {
             if (module != null)
@@ -149,9 +120,15 @@ namespace GFW
             }
         }
 
-        /// <summary>
-        /// 释放所有模块
-        /// </summary>
+        public BusinessModule GetModule(string name)
+        {
+            if (m_mapModules.ContainsKey(name))
+            {
+                return m_mapModules[name];
+            }
+            return null;
+        }
+
         public void ReleaseAll()
         {
             foreach (var @event in m_mapPreListenEvents)
@@ -170,40 +147,27 @@ namespace GFW
         }
 
         /// <summary>
-        /// 通过名字获取一个Module
-        /// 如果未创建过该Module，则返回null
-        /// </summary>
-        /// <param name="name">类名</param>
-        public BusinessModule GetModule(string name)
-        {
-            if (m_mapModules.ContainsKey(name))
-            {
-                return m_mapModules[name];
-            }
-            return null;
-        }
-        #endregion
-
-        //========================================================================
-
-        #region 发送消息给指定模块
-        /// <summary>
         /// 向指定的模块发送消息
         /// </summary>
-        /// <param name="targetName">模块名</param>
-        /// <param name="handlerName">处理函数</param>
-        /// <param name="args">参数数组</param>
-        public void SendMessage(string targetName, string handlerName, params object[] args)
+        public void SendMessage(string target, string msg, params object[] args)
         {
-            SendMessage_Internal(targetName, handlerName, args);
+            SendMessage_Internal(false, target, msg, args);
         }
 
-        private void SendMessage_Internal(string target, string msg, object[] args)
+        public void CallMethod(string target, string name, params object[] args)
+        {
+            SendMessage_Internal(true, target, name, args);
+        }
+
+        private void SendMessage_Internal(bool isCall, string target, string msg, object[] args)
         {
             BusinessModule module = GetModule(target);
             if (module != null)
             {
-                module.HandleMessage(msg, args);
+                if (isCall)
+                    module.CallMethod(msg, args);
+                else
+                    module.HandleMessage(msg, args);
             }
             else
             {
@@ -212,9 +176,8 @@ namespace GFW
                 obj.target = target;
                 obj.msg = msg;
                 obj.args = args;
+                obj.isCall = isCall;
                 list.Add(obj);
-
-                LogMgr.LogWarning("模块不存在！将消息缓存起来! target:{0}, msg:{1}, args:{2}", target, msg, args);
             }
         }
 
@@ -232,17 +195,7 @@ namespace GFW
             }
             return list;
         }
-        #endregion
 
-        //========================================================================
-
-        #region
-        /// <summary>
-        /// 监听指定模块的事件
-        /// </summary>
-        /// <param name="target">目标模块</param>
-        /// <param name="type">事件名</param>
-        /// <returns></returns>
         public ModuleEvent Event(string target, string type)
         {
             ModuleEvent evt = null;
@@ -253,10 +206,8 @@ namespace GFW
             }
             else
             {
-                //预创建事件
                 EventTable table = GetPreEventTable(target);
                 evt = table.GetEvent(type);
-                LogMgr.LogWarning("Event() target不存在！将预监听事件! target:{0}, event:{1}", target, type);
             }
             return evt;
         }
@@ -275,6 +226,5 @@ namespace GFW
             }
             return table;
         }
-        #endregion
     }
 }

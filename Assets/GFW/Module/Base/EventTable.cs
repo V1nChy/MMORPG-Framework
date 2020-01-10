@@ -31,6 +31,19 @@ namespace GFW
             return m_mapEvents[eventName];
         }
 
+        public ModuleEvent GetEvent<T>(string eventName)
+        {
+            if (m_mapEvents == null)
+            {
+                m_mapEvents = new Dictionary<string, ModuleEvent>();
+            }
+            if (!m_mapEvents.ContainsKey(eventName))
+            {
+                m_mapEvents.Add(eventName, new ModuleEvent());
+            }
+            return m_mapEvents[eventName];
+        }
+
         public void Clear()
         {
             if(m_mapEvents != null)

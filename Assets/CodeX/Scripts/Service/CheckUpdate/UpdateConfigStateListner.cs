@@ -19,7 +19,7 @@ namespace CodeX
             MemoryQuest memory_quest = new MemoryQuest();
             memory_quest.RelativePath = remote_cfg_url;
             string server_config = GameConfig.Instance["GetServerConfig"];
-            ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage");
+            BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage");
             MemoryLoadCallbackFunc delay_func = delegate (bool is_suc, byte[] buffer)
             {
                 bool load_state = false;
@@ -77,7 +77,7 @@ namespace CodeX
                 {
                     CheckUpdateService.Instance.CleanTryLoadConfig();
                     CheckUpdateService.Instance.backupUrlState = BackUpUrlState.None;
-                    ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "TRY_LOAD_CONFIG", GameConfig.Instance["NetWorkError"]);
+                    BusinessManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "TRY_LOAD_CONFIG", GameConfig.Instance["NetWorkError"]);
                 }
             }
         }
