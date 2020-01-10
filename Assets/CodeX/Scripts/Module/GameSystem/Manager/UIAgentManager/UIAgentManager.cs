@@ -65,7 +65,7 @@ namespace CodeX
             }
             catch (Exception e)
             {
-                this.LogError(e.Message);
+                LogMgr.LogError(e.Message);
             }
             return null;
         }

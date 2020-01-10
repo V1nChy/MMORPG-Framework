@@ -25,7 +25,7 @@ public class RealAssetBundle
 		}
 		else
 		{
-			LogManager.LogWarning(assetName + "has not loaded");
+			LogMgr.LogWarning(assetName + "has not loaded");
             return null;
 		}
 	}

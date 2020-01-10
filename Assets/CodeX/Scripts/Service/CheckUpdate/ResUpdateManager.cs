@@ -142,12 +142,12 @@ namespace CodeX
                 {
                     if (is_suc)
                     {
-                        this.Log("download version file Success");
+                        LogMgr.Log("download version file Success");
                         this.ParseVersionFile(buffer);
                     }
                     else
                     {
-                        this.Log(string.Format("request version file error {0}", version_file_url));
+                        LogMgr.Log("request version file error {0}", version_file_url);
                     }
                 };
                 MemoryQuest memory_quest = new MemoryQuest();
@@ -166,7 +166,7 @@ namespace CodeX
                     }
                 }
                 memory_quest.RelativePath = string.Format("{0}?v={1}", version_file_url, Util.GetTimeStamp());
-                this.Log("download file:" + memory_quest.RelativePath);
+                LogMgr.Log("download file:{0}",memory_quest.RelativePath);
                 ResRequest.Instance.RequestMemoryAsync(memory_quest, delay_func);
             }
         }
@@ -516,7 +516,7 @@ namespace CodeX
                         }
                         else
                         {
-                            this.Log(string.Format("download md5 error {0}", info.file_path));
+                            LogMgr.Log("download md5 error {0}", info.file_path);
                             bool random_state = info.random_state;
                             if (random_state)
                             {
@@ -526,7 +526,7 @@ namespace CodeX
                             }
                             else
                             {
-                                this.Log(string.Format("md5 check error {0}", info.file_path));
+                                LogMgr.Log("md5 check error {0}", info.file_path);
                                 info.count = 0;
                                 string[] array = info.http_str.Split(new char[]
                                 {
@@ -562,7 +562,7 @@ namespace CodeX
                             info.count = 0;
                             this.m_update_infos.Add(info);
                         }
-                        this.Log(string.Format("download again {0}", info.file_path));
+                        LogMgr.Log("download again {0}", info.file_path);
                     }
                 };
                 MemoryQuest memory_quest = new MemoryQuest();
@@ -578,7 +578,7 @@ namespace CodeX
                 }
                 if (AppConst.OpenDownloadLog)
                 {
-                    this.Log(string.Format("res start update, res path:{0},", info.http_str));
+                    LogMgr.Log("res start update, res path:{0}", info.http_str);
                 }
                 ResRequest.Instance.RequestMemoryAsync(memory_quest, delay_func);
                 if (memory_quest.Www != null)

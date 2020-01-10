@@ -115,7 +115,7 @@ namespace CodeX
                     }
                     catch (Exception ex)
                     {
-                        LogManager.LogError(ex.Message);
+                        LogMgr.LogError(ex.Message);
                     }
                     Thread.Sleep(1);
                 }
@@ -140,7 +140,7 @@ namespace CodeX
                 {
                     Debug.LogError(ex.Message);
                 }
-                this.Log("Thread Download:" + downloadInfo.memory_quest.RelativePath);
+                LogMgr.Log("Thread Download:{0}",downloadInfo.memory_quest.RelativePath);
             }
         }
 
@@ -149,7 +149,7 @@ namespace CodeX
             bool flag = e != null && e.Error != null;
             if (flag)
             {
-                this.Log(e.Error.ToString());
+                LogMgr.Log(e.Error.ToString());
                 callback(false, null);
             }
             else
@@ -176,7 +176,7 @@ namespace CodeX
                 {
                     Debug.LogError(ex.Message);
                 }
-                this.Log("Thread Download:" + downloadInfo.memory_quest.RelativePath);
+                LogMgr.Log("Thread Download:{0}",downloadInfo.memory_quest.RelativePath);
             }
         }
 
@@ -184,7 +184,7 @@ namespace CodeX
         {
             if (e != null && e.Error != null)
             {
-                this.Log(e.Error.ToString());
+                LogMgr.Log(e.Error.ToString());
                 callback(false, null);
             }
             else
@@ -199,7 +199,7 @@ namespace CodeX
             bool openDownloadLog = AppConst.OpenDownloadLog;
             if (openDownloadLog)
             {
-                this.Log(string.Format("update file, url:{0},", memory_quest.RelativePath));
+                LogMgr.Log("update file, url:{0},", memory_quest.RelativePath);
             }
             bool useUpdateNewMode = AppConst.UseUpdateNewMode;
             if (useUpdateNewMode)
@@ -211,15 +211,14 @@ namespace CodeX
                 bool flag = webRequest.isNetworkError || webRequest.isHttpError || webRequest.downloadHandler == null || webRequest.downloadHandler.data == null;
                 if (flag)
                 {
-                    this.Log(string.Format("res request error occurr, res url:{0}, error:{1}, responseCode:{2}, downloadProgress:{3},isNetworkError:{4}, isHttpError:{5}", new object[]
-                    {
+                    LogMgr.Log("res request error occurr, res url:{0}, error:{1}, responseCode:{2}, downloadProgress:{3},isNetworkError:{4}, isHttpError:{5}",
                         memory_quest.RelativePath,
                         webRequest.error,
                         webRequest.responseCode,
                         webRequest.downloadProgress,
                         webRequest.isNetworkError,
                         webRequest.isHttpError
-                    }));
+                    );
                     callback(false, null);
                 }
                 else
@@ -259,7 +258,7 @@ namespace CodeX
                     bool flag3 = !string.IsNullOrEmpty(www.error) || www.bytes == null;
                     if (flag3)
                     {
-                        this.Log(string.Format("res request error occurr, res url:{0}, error:{1}", memory_quest.RelativePath, www.error));
+                        LogMgr.Log("res request error occurr, res url:{0}, error:{1}", memory_quest.RelativePath, www.error);
                         callback(false, null);
                     }
                     else

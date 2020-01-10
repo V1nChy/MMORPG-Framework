@@ -25,11 +25,10 @@ namespace CodeX
 
 		public override void OnStateUpdate(GameState pCurState, float elapseTime)
 		{
-            Debug.Log("1");
             if (GameConfig.Instance.Finish())
 			{
-                ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "SHOW_WINDOW_TEXT");
-                CheckUpdateService.Instance.ToUpdateConfigState();
+                //ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "SHOW_WINDOW_TEXT");
+                //CheckUpdateService.Instance.ToUpdateConfigState();
 			}
 		}
 

@@ -48,6 +48,7 @@ namespace CodeX
         {
             this.backupUrlState = BackUpUrlState.None;
             StartCheckUpdate();
+            MonoHelper.AddUpdateListener(Update);
         }
 
         private void StartCheckUpdate()
@@ -120,6 +121,7 @@ namespace CodeX
             {
                 ResUpdateManager.Instance.Close();
             }
+            MonoHelper.RemoveUpdateListener(Update);
         }
 
         public void DestoryStateMachine()

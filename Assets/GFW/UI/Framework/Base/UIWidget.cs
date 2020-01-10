@@ -19,7 +19,7 @@ namespace GFW
         /// </summary>
         public sealed override void Open(object arg = null)
         {
-            this.Log("Open() arg:{0}", arg);
+            LogMgr.Log("Open() arg:{0}", arg);
             m_openArg = arg;
             if(!this.gameObject.activeSelf)
             {
@@ -33,7 +33,7 @@ namespace GFW
         /// </summary>
         public sealed override void Close(object arg = null)
         {
-            this.Log("Close() arg:{0}", arg);
+            LogMgr.Log("Close() arg:{0}", arg);
             if(this.gameObject.activeSelf)
             {
                 this.gameObject.SetActive(false);

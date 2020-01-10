@@ -70,7 +70,7 @@ namespace GFW
         /// <param name="args">参数数组</param>
         internal void HandleMessage(string method, object[] args)
         {
-            this.Log("method:{0}, args:{1}", method, args);
+            LogMgr.Log("method:{0}, args:{1}", method, args);
 
             //反射机制
             //类型定义，方法定义
@@ -92,7 +92,7 @@ namespace GFW
         /// </summary>
         protected virtual void OnModuleMessage(string method, object[] args)
         {
-            this.Log("general hander： method:{0}, args:{1}", method, args);
+            LogMgr.Log("general hander： method:{0}, args:{1}", method, args);
         }
         #endregion
 
@@ -104,7 +104,7 @@ namespace GFW
         /// <param name="args"></param>
         public virtual void Create(object arg = null)
         {
-            this.Log("{0} create: arg = {1}", Name, arg);
+            LogMgr.Log("{0} create: arg = {1}", Name, arg);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace GFW
         /// <param name="arg"></param>
         protected virtual void Start(object arg)
         {
-            this.Log("业务模块 {0} 显示: arg = {1}", Name, arg);
+            LogMgr.Log("业务模块 {0} 显示: arg = {1}", Name, arg);
         }
     }
 }

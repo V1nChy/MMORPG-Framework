@@ -47,7 +47,7 @@ namespace GFW
 
         internal void HandleMessage(string method, object[] args)
         {
-            this.Log("method:{0}, args:{1}", method, args);
+            LogMgr.Log("method:{0}, args:{1}", method, args);
 
             //反射机制
             //类型定义，方法定义
@@ -65,7 +65,7 @@ namespace GFW
 
         protected virtual void OnModuleMessage(string method, object[] args)
         {
-            this.Log("general hander： method:{0}, args:{1}", method, args);
+            LogMgr.Log("general hander： method:{0}, args:{1}", method, args);
         }
 
         /////管理器生命周期

@@ -50,12 +50,12 @@ namespace GFW
                     }
                     else
                     {
-                        this.LogError("No Find Component<{0}>", typeof(T).Name);
+                        LogMgr.LogError("No Find Component<{0}>", typeof(T).Name);
                     }
                 }
                 else
                 {
-                    this.LogError("Res Not Found: " + resName);
+                    LogMgr.LogError("Res Not Found: {0}",resName);
                 }
             }
 

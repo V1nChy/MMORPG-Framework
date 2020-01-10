@@ -78,11 +78,11 @@ namespace GFW
         /// <param name="name">业务模块(类名)的名字</param>
         public BusinessModule CreateModule(string name, object arg = null)
         {
-            this.Log("Module Name = " + name);
+            LogMgr.Log("Module Name = {0}",name);
 
             if (m_mapModules.ContainsKey(name))
             {
-                this.LogError("The Module<{0}> Has Existed!", name);
+                LogMgr.LogError("The Module<{0}> Has Existed!", name);
                 return null;
             }
 
@@ -95,7 +95,7 @@ namespace GFW
             else
             {
                 module = new LuaModule(name);
-                this.LogWarning("The Module<{0}> Is LuaModule!", name);
+                LogMgr.LogWarning("The Module<{0}> Is LuaModule!", name);
             }
             m_mapModules.Add(name, module);
 
@@ -134,18 +134,18 @@ namespace GFW
             {
                 if (m_mapModules.ContainsKey(module.Name))
                 {
-                    this.Log("ReleaseModule name = " + module.Name);
+                    LogMgr.Log("ReleaseModule name = {0}",module.Name);
                     m_mapModules.Remove(module.Name);
                     module.Release();
                 }
                 else
                 {
-                    this.LogError("模块不是由ModuleManager创建的！ name = " + module.Name);
+                    LogMgr.LogError("模块不是由ModuleManager创建的！ name = {0}", module.Name);
                 }
             }
             else
             {
-                this.LogError("module = null!");
+                LogMgr.LogError("module = null!");
             }
         }
 
@@ -214,7 +214,7 @@ namespace GFW
                 obj.args = args;
                 list.Add(obj);
 
-                this.LogWarning("模块不存在！将消息缓存起来! target:{0}, msg:{1}, args:{2}", target, msg, args);
+                LogMgr.LogWarning("模块不存在！将消息缓存起来! target:{0}, msg:{1}, args:{2}", target, msg, args);
             }
         }
 
@@ -256,7 +256,7 @@ namespace GFW
                 //预创建事件
                 EventTable table = GetPreEventTable(target);
                 evt = table.GetEvent(type);
-                this.LogWarning("Event() target不存在！将预监听事件! target:{0}, event:{1}", target, type);
+                LogMgr.LogWarning("Event() target不存在！将预监听事件! target:{0}, event:{1}", target, type);
             }
             return evt;
         }

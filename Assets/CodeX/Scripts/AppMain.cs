@@ -22,7 +22,7 @@ public class AppMain : MonoBehaviour {
 
         if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
         {
-            LogManager.EnableLog = true;
+            LogMgr.EnableLog = true;
             gameObject.AddComponent<LogViewer>();
         }
 

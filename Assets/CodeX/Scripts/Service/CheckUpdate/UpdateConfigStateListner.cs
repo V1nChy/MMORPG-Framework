@@ -59,7 +59,7 @@ namespace CodeX
 
         private void RetryLoadConfig()
         {
-            this.Log("UpdateConfigStateListner@RetryLoadConfig() 重新请求远程配置");
+            LogMgr.Log("UpdateConfigStateListner@RetryLoadConfig() 重新请求远程配置");
             if (CheckUpdateService.Instance.ConfigTryLoadCount() < 2u)
             {
                 CheckUpdateService.Instance.TryLoadConfig();

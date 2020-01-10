@@ -103,19 +103,19 @@ namespace CodeX
                             {
                                 Sqlite3tool.OpenCyMzq(path, ref this.m_remote_version);
                                 this.m_result = PackResult.Success;
-                                this.Log("OpenCyMzq " + path);
+                                LogMgr.Log("OpenCyMzq {0}",path);
                             }
                         }
                         else
                         {
-                            this.Log("PackResult.Faild");
+                            LogMgr.Log("PackResult.Faild");
                             this.m_result = PackResult.Faild;
-                            LogManager.LogError(string.Format("init sqlite error {0}", path));
+                            LogMgr.LogError(string.Format("init sqlite error {0}", path));
                         }
                     };
                     MemoryQuest memory_quest = new MemoryQuest();
                     memory_quest.RelativePath = http_str + "?v=" + Util.GetTimeStamp();
-                    this.Log("download file:" + memory_quest.RelativePath);
+                    LogMgr.Log("download file:{0}",memory_quest.RelativePath);
                     ResRequest.Instance.RequestMemoryAsync(memory_quest, delay_func);
                 }
                 else

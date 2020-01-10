@@ -56,7 +56,7 @@ public class Sqlite3tool
         bool debug_mode = this.m_debug_mode;
         if (debug_mode)
         {
-            LogManager.Log(string.Format("excute sql {0}, result {1}", create_table_sql, result));
+            LogMgr.Log(string.Format("excute sql {0}, result {1}", create_table_sql, result));
         }
     }
 	public bool OpenDbFromMemory(byte[] buffer)
@@ -72,7 +72,7 @@ public class Sqlite3tool
 		}
 		catch (Exception e)
 		{
-			LogManager.Log(string.Format("Create sqlitedb from memory failed!, error is {0}", e.Message));
+			LogMgr.Log(string.Format("Create sqlitedb from memory failed!, error is {0}", e.Message));
 			result = false;
 		}
 		return result;
@@ -145,7 +145,7 @@ public class Sqlite3tool
 			bool debug_mode = this.m_debug_mode;
 			if (debug_mode)
 			{
-				LogManager.Log(string.Format("excute sql:{0}, result:{1}", replace_sql, result));
+				LogMgr.Log(string.Format("excute sql:{0}, result:{1}", replace_sql, result));
 			}
 			result2 = (result == 0);
 		}
@@ -215,7 +215,7 @@ public class Sqlite3tool
             byte[] DecompBuffs = Sqlite3tool.DecompNetBuffer(buffs, nLength, unzip, out len);
             if (unzip != len)
             {
-                LogManager.LogError("error: unzip != len");
+                LogMgr.LogError("error: unzip != len");
             }
             MemoryStream decomp_ms = new MemoryStream(DecompBuffs);
             BinaryReader decomp_reader = new BinaryReader(decomp_ms);
@@ -296,7 +296,7 @@ public class Sqlite3tool
             byte[] DecompBuffs = Sqlite3tool.DecompNetBuffer(buffs, nLength, unzip, out len);
             if (unzip != len)
             {
-                LogManager.LogError("error: unzip != len");
+                LogMgr.LogError("error: unzip != len");
             }
             MemoryStream decomp_ms = new MemoryStream(DecompBuffs);
             BinaryReader decomp_reader = new BinaryReader(decomp_ms);
@@ -413,7 +413,7 @@ public class Sqlite3tool
 				goto IL_D9;
 			}
 		}
-		LogManager.LogError(string.Format("zlib inflate error, code is {0}", rc));
+		LogMgr.LogError(string.Format("zlib inflate error, code is {0}", rc));
 		Block_3:
 		IL_D9:
 		Sqlite3tool.m_zlib_codec.EndInflate();
@@ -463,7 +463,7 @@ public class Sqlite3tool
             }
             else
             {
-                LogManager.Log(string.Format("excute sql:{0}, result:{1}", sqlstring.ToString(), result));
+                LogMgr.Log(string.Format("excute sql:{0}, result:{1}", sqlstring.ToString(), result));
                 result2 = false;
             }
         }

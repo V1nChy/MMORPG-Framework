@@ -96,7 +96,7 @@ namespace GFW
             Type type = Type.GetType(m_domain + "." + commandName);
             if(type == null)
             {
-                this.LogError("Register Command<{0}> Type Not Exist!", commandName);
+                LogMgr.LogError("Register Command<{0}> Type Not Exist!", commandName);
                 return;
             }
 
@@ -118,14 +118,14 @@ namespace GFW
         {
             if (this.GetManager(mgrName) != null)
             {
-                this.LogError("The Manager<{0}> Has Existed!", mgrName);
+                LogMgr.LogError("The Manager<{0}> Has Existed!", mgrName);
                 return null;
             }
 
             Type type = Type.GetType(m_domain + "." + mgrName);
             if (type == null)
             {
-                this.LogError("The Manager<{0}> Type Is Error!", mgrName);
+                LogMgr.LogError("The Manager<{0}> Type Is Error!", mgrName);
                 return null;
             }
 
@@ -139,7 +139,7 @@ namespace GFW
             {
                 return mgr;
             }
-            this.Log("AddManager type = " + type.Name);
+            LogMgr.Log("AddManager type = {0}",type.Name);
             mgr = Activator.CreateInstance(type) as ManagerModule;
             m_ManagerDic.Add(type.Name, mgr);
             m_ManagerList.Add(mgr);
@@ -188,7 +188,7 @@ namespace GFW
                 //obj.args = args;
                 //list.Add(obj);
 
-                //this.LogWarning("模块不存在！将消息缓存起来! target:{0}, msg:{1}, args:{2}", target, msg, args);
+                //LogMgrWarning("模块不存在！将消息缓存起来! target:{0}, msg:{1}, args:{2}", target, msg, args);
             }
         }
     }

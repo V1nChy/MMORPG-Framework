@@ -187,7 +187,7 @@ namespace CodeX
                     func.Call<object>(null);
                     func.Dispose();
                 }
-                LogManager.Log("assetsbundle is not exist:" + abName);
+                LogMgr.Log("assetsbundle is not exist:" + abName);
                 return;
             }
             #endregion
@@ -660,14 +660,14 @@ namespace CodeX
             string remote_path = string.Format("{0}{1}?v={2}", AppConst.CdnUrl, full_file_name.Remove(0, 1), file_version);
             if (AppConst.OpenDownloadLog)
             {
-                this.Log(string.Format("assetbundle start download, res path:{0},", assets_name));
+                LogMgr.Log(string.Format("assetbundle start download, res path:{0},", assets_name));
             }
             UnityWebRequest webRequest = UnityWebRequest.Get(remote_path);
             webRequest.timeout = (int)this.m_download_timeout;
             yield return webRequest.SendWebRequest();
             if (AppConst.OpenDownloadLog)
             {
-                this.Log(string.Format("res download last time {0},{1},cost time:{2:N3}", remote_path, assets_name, Time.time - start_time));
+                LogMgr.Log(string.Format("res download last time {0},{1},cost time:{2:N3}", remote_path, assets_name, Time.time - start_time));
             }
             string error_state = null;
             if (webRequest.isNetworkError || webRequest.isHttpError)
@@ -1014,7 +1014,7 @@ namespace CodeX
                     {
                         string abName = delay_delete_ab[i];
                         AssetBundleInfo bundle = this.GetLoadedAssetBundle(abName);
-                        LogManager.Log("-------------auto unload assets:" + abName);
+                        LogMgr.Log("-------------auto unload assets:" + abName);
                         DeleteAB(abName, bundle, true);
                     }
                 }
@@ -1071,7 +1071,7 @@ namespace CodeX
             }
             else
             {
-                LogManager.Log("UnloadAssetBundle Error:>>" + abName);
+                LogMgr.Log("UnloadAssetBundle Error:>>" + abName);
             }
         }
 

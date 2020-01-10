@@ -72,6 +72,7 @@ namespace CodeX
             if (rt)
             {
                 this.ReadLocalConfig();
+                LogMgr.Log("");
             }
             yield break;
         }

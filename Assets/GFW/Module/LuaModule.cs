@@ -11,7 +11,7 @@
 
         public override void Create(object args = null)
         {
-            this.Log("创建Lua模块 name = " + Name);
+            LogMgr.Log("创建Lua模块 name = " + Name);
             m_args = args;
 
             //EventTable mgrEvent = GetEventTable();
@@ -29,7 +29,7 @@
         /// </summary>
         public override void Release()
         {
-            this.Log("Release Lua = " + Name);
+            LogMgr.Log("Release Lua = {0}",Name);
         }
     }
 }

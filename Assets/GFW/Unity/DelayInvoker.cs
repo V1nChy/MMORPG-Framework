@@ -31,7 +31,7 @@ namespace GFW.Unity
                     }
                     catch(Exception e)
                     {
-                        this.LogError("DelayInvoker", "Invoke() Error:{0}\n{1}", e.Message, e.StackTrace);
+                        LogMgr.LogError("DelayInvoker", "Invoke() Error:{0}\n{1}", e.Message, e.StackTrace);
                     }
                     
                 }
@@ -186,7 +186,7 @@ namespace GFW.Unity
             }
             catch (Exception e)
             {
-                LogManager.LogError("DelayInvoker", "DelayInvokerOnEndOfFrame() Error:{0}\n{1}", e.Message, e.StackTrace);
+                LogMgr.LogError("DelayInvoker", "DelayInvokerOnEndOfFrame() Error:{0}\n{1}", e.Message, e.StackTrace);
             }
 
             //Profiler.EndSample();

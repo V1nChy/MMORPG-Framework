@@ -20,7 +20,7 @@ namespace GFW
         /// </summary>
         public virtual void Open(object arg = null)
         {
-            this.Log("arg:{0}",arg);
+            LogMgr.Log("arg:{0}",arg);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace GFW
         /// </summary>
         public virtual void Close(object arg = null)
         {
-            this.Log("arg:{0}", arg);
+            LogMgr.Log("arg:{0}", arg);
         }
 
         #endregion
@@ -39,14 +39,14 @@ namespace GFW
         /// </summary>
         protected virtual void OnOpen(object arg = null)
         {
-            this.Log("arg:{0}", arg);
+            LogMgr.Log("arg:{0}", arg);
         }
         /// <summary>
         /// 当UI关闭时，会响应这个函数
         /// </summary>
         protected virtual void OnClose(object arg = null)
         {
-            this.Log("OnClose()");
+            LogMgr.Log("OnClose()");
         }
         #endregion
     }

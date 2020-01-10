@@ -182,7 +182,7 @@ public static class CustomSettings
         _GT(typeof(NetworkManager)),
         _GT(typeof(ResourceManager)),
 
-        _GT(typeof(LogManager)),
+        _GT(typeof(LogMgr)),
         _GT(typeof(LuaClickListener)),
         _GT(typeof(LuaEventListener)),
         _GT(typeof(LuaDragListener)),

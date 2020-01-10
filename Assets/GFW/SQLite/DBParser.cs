@@ -17,7 +17,7 @@ namespace GFW
             }
             catch (Exception e)
             {
-                LogManager.Log(string.Format("Create sqlitedb from file failed!, error is {0}", e.Message));
+                LogMgr.Log(string.Format("Create sqlitedb from file failed!, error is {0}", e.Message));
                 result = false;
             }
             return result;
@@ -42,7 +42,7 @@ namespace GFW
             }
             catch (Exception e)
             {
-                LogManager.Log(string.Format("Create sqlitedb from memory failed!, error is {0}", e.Message));
+                LogMgr.Log(string.Format("Create sqlitedb from memory failed!, error is {0}", e.Message));
                 result = false;
             }
             return result;
@@ -68,7 +68,7 @@ namespace GFW
             bool flag = this.m_sqlite_db != null;
             if (flag)
             {
-                LogManager.Log("type_id=" + type_id);
+                LogMgr.Log("type_id=" + type_id);
                 string sql = string.Format("select val from lua_config where id = '{0}'", type_id);
                 SQLiteQuery qr = new SQLiteQuery(this.m_sqlite_db, sql);
                 if (qr.Step())

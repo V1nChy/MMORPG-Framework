@@ -8,7 +8,7 @@ namespace CodeX
 	{
         public override void OnStateEnter(GameState pCurState)
         {
-            this.Log("PreResStateListner@OnStateEnter");
+            LogMgr.Log("PreResStateListner@OnStateEnter");
             if (AppConst.UpdateMode)
             {
                 ResUpdateManager.Instance.CloseGameDataBase(true);

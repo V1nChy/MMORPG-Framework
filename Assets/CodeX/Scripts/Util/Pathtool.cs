@@ -115,7 +115,7 @@ namespace CodeX
 			}
 			catch (Exception ex)
 			{
-				LogManager.LogError("Can't create local resource" + path);
+				LogMgr.LogError("Can't create local resource" + path);
 				return false;
 			}
 			return true;
@@ -148,7 +148,7 @@ namespace CodeX
 				}
 				catch (Exception ex)
 				{
-					LogManager.LogError("Can't create local resource" + path);
+					LogMgr.LogError("Can't create local resource" + path);
 					return false;
 				}
 			}

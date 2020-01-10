@@ -127,7 +127,7 @@ namespace CodeX
                     }
                     catch (Exception ex)
                     {
-                        LogManager.LogError(ex.Message);
+                        LogMgr.LogError(ex.Message);
                     }
                     Thread.Sleep(1);
                 }

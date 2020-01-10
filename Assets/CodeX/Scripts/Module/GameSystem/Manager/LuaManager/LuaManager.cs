@@ -103,7 +103,7 @@ namespace CodeX
 
         public void StartModule(string modName, string startFunc = "Start")
         {
-            this.Log("StartModule modName = {0}, startFunc = {1}", modName, startFunc);
+            LogMgr.Log("StartModule modName = {0}, startFunc = {1}", modName, startFunc);
             this.lua.AddSearchPath(LuaConst.luaDir + "/" + modName);
 
             lua.DoFile(modName + ".lua");

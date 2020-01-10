@@ -36,7 +36,7 @@ namespace GFW
         /// </summary>
         protected void OnEnable()
         {
-            this.Log("OnEnable()");
+            LogMgr.Log("OnEnable()");
             if(m_btnClose != null)
             {
                 m_btnClose.onClick.AddListener(OnBtnClose);
@@ -49,7 +49,7 @@ namespace GFW
         /// </summary>
         protected void OnDisable()
         {
-            this.Log("OnDisable()");
+            LogMgr.Log("OnDisable()");
 
             if(m_btnClose != null)
             {
@@ -63,13 +63,13 @@ namespace GFW
         /// </summary>
         private void OnBtnClose()
         {
-            this.Log("OnBtnClose()");
+            LogMgr.Log("OnBtnClose()");
             Close(0);
         }
 
         public sealed override void Open(object arg = null)
         {
-            this.Log("Open() arg:{0}", arg);
+            LogMgr.Log("Open() arg:{0}", arg);
             m_openArg = arg;
             m_isOpenedOnce = false;
             if(!this.gameObject.activeSelf)
@@ -82,7 +82,7 @@ namespace GFW
 
         public sealed override void Close(object arg = null)
         {
-            this.Log("Close()");
+            LogMgr.Log("Close()");
             if(this.gameObject.activeSelf)
             {
                 this.gameObject.SetActive(false);

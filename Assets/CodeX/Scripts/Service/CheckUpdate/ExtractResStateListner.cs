@@ -14,7 +14,7 @@ namespace CodeX
 
         public override void OnStateEnter(GameState pCurState)
         {
-            this.Log("ExtractResStateListner@OnStateEnter()");
+            LogMgr.Log("ExtractResStateListner@OnStateEnter()");
             string update_mess = GameConfig.Instance.GetValue("GameResExtract");
             ModuleManager.Instance.SendMessage(ModuleDef.LaunchModule, "SendMessageCommand", "UpdateMessage", GameConfig.Instance["GameResExtract"]);
             this.CheckExtractResource();
@@ -61,8 +61,8 @@ namespace CodeX
             {
                 File.Delete(outfile);
             }
-            this.Log(infile);
-            this.Log(outfile);
+            LogMgr.Log(infile);
+            LogMgr.Log(outfile);
             bool has_data = false;
             if (Application.platform == RuntimePlatform.Android)
             {
