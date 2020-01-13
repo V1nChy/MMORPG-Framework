@@ -31,26 +31,31 @@ namespace GFW
             base.Release();
             if (m_tblEvent != null)
             {
-                m_tblEvent.Clear();
+                m_tblEvent.UnBindAll();
                 m_tblEvent = null;
             }
         }
 
-        protected EventTable GetEventTable()
+        internal void SetEventTable(EventTable eventTable)
         {
-            if (m_tblEvent == null)
+            if(eventTable != null)
+            {
+                m_tblEvent = eventTable;
+            }
+            else
             {
                 m_tblEvent = new EventTable();
             }
-            return m_tblEvent;
         }
-        internal void SetEventTable(EventTable eventTable)
+
+        public void Bind(int eventType, EventCallback<object> eventHandler)
         {
-            m_tblEvent = eventTable;
+            m_tblEvent.Bind(eventType, eventHandler);
         }
-        public ModuleEvent Event(string eventName)
+
+        public void Fire(int eventType, object eventArg = null)
         {
-            return GetEventTable().GetEvent(eventName);
+            m_tblEvent.Fire(eventType, eventArg);
         }
 
         internal void CallMethod(string method, object[] args)

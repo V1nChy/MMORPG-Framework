@@ -72,14 +72,14 @@ namespace GFW
             m_mapModules.Add(name, module);
 
             //处理预监听的事件
+            EventTable eventTable = null;
             if (m_mapPreListenEvents.ContainsKey(name))
             {
-                EventTable eventTable = null;
                 eventTable = m_mapPreListenEvents[name];
                 m_mapPreListenEvents.Remove(name);
 
-                module.SetEventTable(eventTable);
             }
+            module.SetEventTable(eventTable);
 
             module.Create(arg);
 
@@ -133,7 +133,7 @@ namespace GFW
         {
             foreach (var @event in m_mapPreListenEvents)
             {
-                @event.Value.Clear();
+                @event.Value.UnBindAll();
             }
             m_mapPreListenEvents.Clear();
 
@@ -194,22 +194,6 @@ namespace GFW
                 list = m_mapCacheMessage[target];
             }
             return list;
-        }
-
-        public ModuleEvent Event(string target, string type)
-        {
-            ModuleEvent evt = null;
-            BusinessModule module = GetModule(target);
-            if (module != null)
-            {
-                evt = module.Event(type);
-            }
-            else
-            {
-                EventTable table = GetPreEventTable(target);
-                evt = table.GetEvent(type);
-            }
-            return evt;
         }
 
         private EventTable GetPreEventTable(string target)

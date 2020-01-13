@@ -8,7 +8,7 @@ namespace CodeX
 {
     public class LaunchModule : BusinessModule
     {
-        public const string EVENT_CHANGE_VIEW = "EVENT_CHANGE_VIEW";
+        public const int EVENT_CHANGE_VIEW = 1;
 
         AsyncOperation m_Async;
 
@@ -30,7 +30,7 @@ namespace CodeX
 
         protected override void OnMessage(IMessage msg)
         {
-            Event(EVENT_CHANGE_VIEW).Invoke(msg);
+            Fire(EVENT_CHANGE_VIEW);
         }
     }
 }

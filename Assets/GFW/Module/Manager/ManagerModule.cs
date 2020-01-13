@@ -40,9 +40,14 @@ namespace GFW
             m_tblEvent = eventTable;
         }
 
-        public ModuleEvent Event(string eventName)
+        public void Bind(int eventType, EventCallback<object> eventHandler)
         {
-            return GetEventTable().GetEvent(eventName);
+            m_tblEvent.Bind(eventType, eventHandler);
+        }
+
+        public void Fire(int eventType, object eventArg = null)
+        {
+            m_tblEvent.Fire(eventType, eventArg);
         }
 
         internal void HandleMessage(string method, object[] args)
@@ -87,7 +92,7 @@ namespace GFW
             base.Release();
             if (m_tblEvent != null)
             {
-                m_tblEvent.Clear();
+                m_tblEvent.UnBindAll();
                 m_tblEvent = null;
             }
         }

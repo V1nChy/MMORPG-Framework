@@ -16,7 +16,7 @@ namespace CodeX
         protected override void OnOpen(object arg = null)
         {
             mod = arg as LaunchModule;
-            mod.Event(LaunchModule.EVENT_CHANGE_VIEW).AddListener(ChangeView);
+            mod.Bind(LaunchModule.EVENT_CHANGE_VIEW, ChangeView);
         }
 
         private void ChangeView(object a)
