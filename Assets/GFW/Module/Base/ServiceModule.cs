@@ -2,7 +2,7 @@
 
 namespace GFW
 {
-    public abstract class ServiceModule<T> : Module where T : ServiceModule<T>,new()
+    public abstract class ServiceModule<T> : BasicModule where T : ServiceModule<T>,new()
     {
         protected static T ms_instance = default(T);
 

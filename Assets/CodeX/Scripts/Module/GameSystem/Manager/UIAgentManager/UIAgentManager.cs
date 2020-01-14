@@ -163,7 +163,7 @@ namespace CodeX
                     func.Call();
                 }
             };
-            UIViewHelper.ShowProgressView(async, callback);
+            //UIViewHelper.ShowProgressView(async, callback);
         }
     }
 }

@@ -14,9 +14,7 @@ namespace CodeX
 
         protected override void Start(object arg)
         {
-            UIViewHelper.ShowProgressView(null, OnFinish);
-            UIManager.Instance.Open<UILaunchView>(this);
-
+            LoadViewHelper.Instance.Open();
             CheckUpdateService.Instance.StartUp();
         }
 
@@ -30,7 +28,13 @@ namespace CodeX
 
         protected override void OnMessage(IMessage msg)
         {
-            Fire(EVENT_CHANGE_VIEW);
+           switch(msg.Name)
+            {
+                case "SetProgress":
+                    float val = (float)msg.Body;
+                    LoadViewHelper.Instance.SetProgress(val);
+                    break;
+            }
         }
     }
 }

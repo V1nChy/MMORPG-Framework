@@ -46,7 +46,6 @@ namespace CodeX
 
         protected override void OnOpen(object arg = null)
         {
-            m_IsFinish = false;
             m_bTime = Time.time;
 
             if (arg != null)
@@ -61,6 +60,9 @@ namespace CodeX
             {
                 m_ProgressInfo = new ProgressInfo(0, 2, true);
             }
+            Vector2 size = new Vector2(1200, 28);
+            m_BarImg.rectTransform.sizeDelta = size;
+            m_IsFinish = true;
         }
 
         private void Update()
@@ -90,6 +92,10 @@ namespace CodeX
         public void SetFinishCallback(Action callback)
         {
             m_OnFinsh = callback;
+        }
+        public void SetProgress(float value)
+        {
+
         }
     }
 }
