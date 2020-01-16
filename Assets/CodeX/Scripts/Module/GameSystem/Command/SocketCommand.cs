@@ -7,7 +7,6 @@ namespace CodeX
 {
     public class SocketCommand : ICommand
     {
-
         public void Execute(IMessage message)
         {
             object data = message.Body;

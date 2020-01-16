@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GFW.Codec
+namespace GFW
 {
     public class GFWEncoding
     {
@@ -124,6 +124,36 @@ namespace GFW.Codec
             }
 
             return (ushort)(~sum);
+        }
+
+        public static short SwapInt16(short n)
+        {
+            return (short)((int)(n & 255) << 8 | (n >> 8 & 255));
+        }
+
+        public static ushort SwapUInt16(ushort n)
+        {
+            return (ushort)((int)(n & 255) << 8 | (n >> 8 & 255));
+        }
+
+        public static int SwapInt32(int n)
+        {
+            return ((int)SwapInt16((short)n) & 65535) << 16 | ((int)SwapInt16((short)(n >> 16)) & 65535);
+        }
+
+        public static uint SwapUInt32(uint n)
+        {
+            return (uint)((int)(SwapUInt16((ushort)n) & ushort.MaxValue) << 16 | (int)(SwapUInt16((ushort)(n >> 16)) & ushort.MaxValue));
+        }
+
+        public static long SwapInt64(long n)
+        {
+            return (((long)SwapInt32((int)n) & uint.MaxValue << 32) | ((long)SwapInt32((int)(n >> 32)) & uint.MaxValue));
+        }
+
+        public static ulong SwapUInt64(ulong n)
+        {
+            return ((ulong)(SwapUInt32((uint)n) & uint.MaxValue) << 32 | ((ulong)SwapUInt32((uint)(n >> 32)) & uint.MaxValue));
         }
     }
 }

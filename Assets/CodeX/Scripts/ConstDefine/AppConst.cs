@@ -56,6 +56,7 @@ namespace CodeX
         public static bool UseUpdatOriThreadMode = false;
         public static bool UseUpdateNewMode = false;
         public static bool UseDeleteRequestMode = false;
+        public static bool OpenSocketLog = false;
 
         public static string FrameworkRoot {
             get {

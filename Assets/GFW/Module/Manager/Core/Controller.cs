@@ -5,7 +5,8 @@ namespace GFW
 {
     public class Controller : IController
     {
-        protected IDictionary<string, Type> m_commandMap;
+        protected IDictionary<string, Type> m_commandTypeMap;
+        protected IDictionary<string, ICommand> m_commandMap;
         protected static volatile IController m_instance;
         protected readonly object m_syncRoot = new object();
         protected static readonly object m_staticSyncRoot = new object();
@@ -36,34 +37,50 @@ namespace GFW
 
         protected virtual void InitializeController()
         {
-            m_commandMap = new Dictionary<string, Type>();
+            m_commandTypeMap = new Dictionary<string, Type>();
+            m_commandMap = new Dictionary<string, ICommand>();
         }
 
         public virtual void ExecuteCommand(IMessage msg)
         {
-            Type commandType = null;
+            ICommand command = null;
             lock (m_syncRoot)
             {
                 if (m_commandMap.ContainsKey(msg.Name))
                 {
-                    commandType = m_commandMap[msg.Name];
+                    command = m_commandMap[msg.Name];
                 }
             }
-            if (commandType != null)
+            if (command == null)
             {
-                object commandInstance = Activator.CreateInstance(commandType);
-                if (commandInstance is ICommand)
+                Type commandType = null;
+                lock (m_syncRoot)
                 {
-                    ((ICommand)commandInstance).Execute(msg);
+                    if (m_commandTypeMap.ContainsKey(msg.Name))
+                    {
+                        commandType = m_commandTypeMap[msg.Name];
+                    }
+                }
+                if (commandType != null)
+                {
+                    object commandInstance = Activator.CreateInstance(commandType);
+                    if (commandInstance is ICommand)
+                    {
+                        command = (ICommand)commandInstance;
+                    }
                 }
             }
+            if(command != null)
+                command.Execute(msg);
         }
 
         public virtual void RegisterCommand(Type commandType)
         {
             lock (m_syncRoot)
             {
-                m_commandMap[commandType.Name] = commandType;
+                m_commandTypeMap[commandType.Name] = commandType;
+                object commandInstance = Activator.CreateInstance(commandType);
+                m_commandMap[commandType.Name] = (ICommand)Activator.CreateInstance(commandType);
             }
         }
 
@@ -79,6 +96,10 @@ namespace GFW
         {
             lock (m_syncRoot)
             {
+                if (m_commandTypeMap.ContainsKey(commandName))
+                {
+                    m_commandTypeMap.Remove(commandName);
+                }
                 if (m_commandMap.ContainsKey(commandName))
                 {
                     m_commandMap.Remove(commandName);
