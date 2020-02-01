@@ -11,6 +11,7 @@
 /[Mm]emoryCaptures/
 /StreamingAssets/log/
 /Packages/
+/UnityPackageManager/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
